@@ -186,6 +186,7 @@ modded class PlayerBase extends ManBase
     override void OnStoreSave(ParamsWriteContext ctx)
     {
         super.OnStoreSave(ctx);
+
 		StatUpdateByTime(AnalyticsManagerServer.STAT_PLAYTIME);
 		//Making sure not to save freshspawns or dead people, dead people logic is handled in EEKilled
 		if (!GetGame().IsClient() && GetHealth("","Health") > 0 && StatGet(AnalyticsManagerServer.STAT_PLAYTIME) >= MAPLINK_BODYCLEANUPTIME && !IsBeingTransfered() && !MapLinkShoudDelete())

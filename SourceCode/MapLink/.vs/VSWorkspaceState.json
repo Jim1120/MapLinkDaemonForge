@@ -2,7 +2,6 @@
   "ExpandedNodes": [
     "",
     "\\scripts",
-    "\\scripts\\3_Game",
     "\\scripts\\4_World",
     "\\scripts\\4_World\\classes",
     "\\scripts\\4_World\\classes\\UserActionsComponent",
@@ -13,6 +12,5 @@
     "\\scripts\\5_Mission",
     "\\scripts\\5_Mission\\mission"
   ],
-  "SelectedNode": "\\scripts\\4_World\\entities\\PlayerBase.c",
   "PreviewInSolutionExplorer": false
 }

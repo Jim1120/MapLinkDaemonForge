@@ -52,6 +52,14 @@ class PlayerDataStore extends Managed
 		delete m_Stomach;
 		delete m_MetaData;
 	}
+
+	void SavePlayer(PlayerBase player)
+	{
+	}
+
+	void SetupPlayer(PlayerBase player, vector Pos = vector.Zero, vector Ori =  vector.Zero)
+	{
+	}
 	
 	string ToJson()
 	{

@@ -79,6 +79,7 @@ class UApiZoneHealthData extends Managed
 	{ 
 		return (m_Zone == zone); 
 	}
+
 	string Zone()
 	{ 
 		return m_Zone; 

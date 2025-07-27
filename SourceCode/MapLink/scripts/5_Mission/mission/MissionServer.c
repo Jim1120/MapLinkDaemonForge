@@ -1,5 +1,27 @@
 modded class MissionServer extends MissionBase
 {
+	bool IsMapLinkAdmin(PlayerIdentity identity)
+	{
+		if (!identity)
+		{
+			return false;
+		}
+
+		// Check UID
+		if (GetMapLinkConfig().IsMapLinkAdmin(identity.GetId()))
+		{
+			return true;
+		}
+
+		// Check Steam
+		if (GetMapLinkConfig().IsMapLinkAdmin(identity.GetPlainId()))
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 	ref map<string, ref PlayerDataStore> m_PlayerDBQue = new map<string, ref PlayerDataStore>;
 	string m_worldname;
 	int MapLinkConfigRefreshTimer = 0;
@@ -107,7 +129,16 @@ modded class MissionServer extends MissionBase
 			vector ori = "0 0 0";
 			UApiServerData serverData;
 			string transferPoint =  playerdata.m_TransferPoint;
-			string FromServerName = playerdata.m_Server;
+			string fromServerName = playerdata.m_Server;
+
+			if (IsMapLinkAdmin(identity) && fromServerName != UApiConfig().ServerID && transferPoint == "")
+			{
+				MLLog.Info("Admin " + identity.GetId() + " bypassed server redirection. Allowing login directly to current server.");
+				fromServerName = UApiConfig().ServerID;
+				playerdata.m_TransferPoint = "";
+				pos = GetGame().ConfigGetVector(string.Format("CfgWorlds %1 centerPosition", GetGame().GetWorldName()));
+				pos[1] = GetGame().SurfaceY(pos[0], pos[2]) + 0.1; // Place on surface
+			}
 			
 			if (!playerdata.IsAlive() || playerdata.IsUnconscious())
 			{
@@ -131,14 +162,14 @@ modded class MissionServer extends MissionBase
 
 			MLLog.Log("Spawning player " + identity.GetId() + " on: " + UApiConfig().ServerID + " World: " + m_worldname + " at " + transferPoint);
 			
-			if (FromServerName != UApiConfig().ServerID && transferPoint == "") 
+			if (fromServerName != UApiConfig().ServerID && transferPoint == "") 
 			{
 				serverData = UApiServerData.Cast(GetMapLinkConfig().GetServer(playerdata.m_Server));
-				NotificationSystem.Create(new StringLocaliser("Map Link"),new StringLocaliser("#STR_MapLink_Redirect - " + FromServerName), "set:maplink_icons image:redirect", -16843010, 16, identity);
+				NotificationSystem.Create(new StringLocaliser("Map Link"),new StringLocaliser("#STR_MapLink_Redirect - " + fromServerName), "set:maplink_icons image:redirect", -16843010, 16, identity);
 				
 				GetRPCManager().SendRPC("MapLink", "RPCRedirectedKicked", new Param1<UApiServerData>(serverData), true, identity);
 				
-				MLLog.Info("Player " + identity.GetId() + " Redirected to correct server " +  FromServerName);
+				MLLog.Info("Player " + identity.GetId() + " Redirected to correct server " +  fromServerName);
 				MLLog.Debug("Removing Player from Queue " + identity.GetId());
 				
 				m_PlayerDBQue.Remove(identity.GetId());
@@ -146,13 +177,13 @@ modded class MissionServer extends MissionBase
 				return false;
 			}
 
-			if (FromServerName != UApiConfig().ServerID && transferPoint != "") 
+			if (fromServerName != UApiConfig().ServerID && transferPoint != "") 
 			{
 				MapLinkSpawnPointPos pointPos;
 
 				if (!Class.CastTo(pointPos, GetMapLinkConfig().SpawnPointPos(transferPoint)))
 				{
-					serverData = UApiServerData.Cast(GetMapLinkConfig().GetServer(FromServerName));
+					serverData = UApiServerData.Cast(GetMapLinkConfig().GetServer(fromServerName));
 					NotificationSystem.Create(new StringLocaliser("Map Link"),new StringLocaliser("#STR_MapLink_Error - " + playerdata.m_Server), "set:maplink_icons image:redirect", -16843010, 16, identity);
 					GetRPCManager().SendRPC("MapLink", "RPCRedirectedKicked", new Param1<UApiServerData>(serverData), true, identity);
 
@@ -175,7 +206,7 @@ modded class MissionServer extends MissionBase
 			SyncGlobalLighting(player);
 			PlayerDataStore.Cast(playerdata).SetupPlayer(player, pos, ori);
 
-			if (FromServerName != UApiConfig().ServerID && transferPoint != "") 
+			if (fromServerName != UApiConfig().ServerID && transferPoint != "") 
 			{
 				int protectionTime = GetMapLinkConfig().GetProtectionTime(transferPoint);
 				MLLog.Info("Adding Protection to " + playerdata.GUID + "  at " + transferPoint + " for " + protectionTime);

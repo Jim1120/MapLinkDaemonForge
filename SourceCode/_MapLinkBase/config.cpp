@@ -22,6 +22,23 @@ class CfgMods
 	    dependencies[]={ "Game", "World", "Mission"};
 	    class defs
 	    {
+			class engineScriptModule
+			{
+				files[]=
+				{
+					"_MapLinkBase/scripts/1_Core",
+					"_MapLinkBase/scripts/Common"
+					
+				};
+			};
+			class gameLibScriptModule
+			{
+				files[]=
+				{
+					"_MapLinkBase/scripts/2_GameLib",
+					"_MapLinkBase/scripts/Common"
+				};
+			};
 			class gameScriptModule
             {
 				value = "";

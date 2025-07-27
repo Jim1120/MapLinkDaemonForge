@@ -1,20 +1,30 @@
 class MapLinkConfig extends UApiConfigBase 
 {
-	string ConfigVersion = "0";
-	static string CurrentVersion = "0";
+	string ConfigVersion;
+	static string CurrentVersion = "1";
 
-	int TravelCooldownSeconds = 0;
+	int TravelCooldownSeconds;
 	
-	ref array<ref UApiServerData> Servers = new array<ref UApiServerData>;
-	ref array<ref MapLinkArrivalPoint> ArrivalPoints = new array<ref MapLinkArrivalPoint>;
-	ref array<ref MapLinkDepaturePoint> DepaturePoints = new array<ref MapLinkDepaturePoint>;
-	ref array<ref MapLinkCurrency> Currencies = new array<ref MapLinkCurrency>;
+	ref array<ref UApiServerData> Servers;
+	ref array<ref MapLinkArrivalPoint> ArrivalPoints;
+	ref array<ref MapLinkDepaturePoint> DepaturePoints;
+	ref array<ref MapLinkCurrency> Currencies;
+
+	ref array<string> Admins;
 	
-	int LogLevel_File = 3;
-	int LogLevel_API = 2;
+	int LogLevel_File;
+	int LogLevel_API;
 	
 	static float MAX_DEPATUREPOINT_DISTANCE = 20;
 	static float MAX_DEPATUREPOINTANY_DISTANCE = 0.7;
+
+	bool IsMapLinkAdmin(string id)
+	{
+		if (!Admins)
+			return false;
+
+		return Admins.Find(id) != -1;
+	}
 	
 	override void SetDefaults()
 	{
@@ -23,11 +33,25 @@ class MapLinkConfig extends UApiConfigBase
 			if it doesn't exsit the API will create the file
 		*/
 
+		ConfigVersion = "0";
+
+		TravelCooldownSeconds = 0;
+		LogLevel_File = 3;
+		LogLevel_API = 2;
+
+		Servers = new array<ref UApiServerData>;
+		ArrivalPoints = new array<ref MapLinkArrivalPoint>;
+		DepaturePoints = new array<ref MapLinkDepaturePoint>;
+		Currencies = new array<ref MapLinkCurrency>;
+
+		Admins = new array<string>;
+
 		Servers.Insert(new UApiServerData(""));
 		DepaturePoints.Insert(new MapLinkDepaturePoint("Demo000"));
 		ArrivalPoints.Insert(new MapLinkArrivalPoint("Demo000"));
 		Currencies.Insert(new MapLinkCurrency(-1));
 		Currencies.Insert(new MapLinkCurrency(-2));
+		Admins.Insert("SteamID");
 	}
 
 	override void OnDataReceive()
@@ -291,7 +315,7 @@ class MapLinkConfig extends UApiConfigBase
 	}
 }
 
-static ref MapLinkConfig m_MapLinkConfig;
+ref MapLinkConfig m_MapLinkConfig;
 
 static MapLinkConfig GetMapLinkConfig()
 {

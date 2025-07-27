@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "P:\\ZenMods\\Daemon\\_UAPIBase\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|P:\\ZenMods\\Daemon\\_UAPIBase\\scripts\\4_World\\UApi\\PlayerBase.c||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\4_World\\UApi\\PlayerBase.c||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|P:\\ZenMods\\Daemon\\_UAPIBase\\scripts\\3_Game\\UApi\\ScriptExecutor.c||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\3_Game\\UApi\\ScriptExecutor.c||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
@@ -25,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|P:\\ZenMods\\Daemon\\_UAPIBase\\scripts\\3_Game\\UApi\\SimpleStore.c||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\3_Game\\UApi\\SimpleStore.c||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|P:\\ZenMods\\Daemon\\_UAPIBase\\scripts\\4_World\\UApi\\PlayerBase.c||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\4_World\\UApi\\PlayerBase.c||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|P:\\ZenMods\\Daemon\\_UAPIBase\\scripts\\4_World\\UApi\\ItemBase.c||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -66,24 +66,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "PlayerBase.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\_UAPIBase\\scripts\\4_World\\UApi\\PlayerBase.c",
               "RelativeDocumentMoniker": "scripts\\4_World\\UApi\\PlayerBase.c",
               "ToolTip": "P:\\ZenMods\\Daemon\\_UAPIBase\\scripts\\4_World\\UApi\\PlayerBase.c",
               "RelativeToolTip": "scripts\\4_World\\UApi\\PlayerBase.c",
-              "ViewState": "AgIAANEAAAAAAAAAAAAAwPgAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAALsAAAAAAAAAAAAjwNUAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-05-10T02:05:35.843Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ItemStore.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\_UAPIBase\\scripts\\4_World\\UApi\\ItemStore.c",
               "RelativeDocumentMoniker": "scripts\\4_World\\UApi\\ItemStore.c",
@@ -91,8 +103,7 @@
               "RelativeToolTip": "scripts\\4_World\\UApi\\ItemStore.c",
               "ViewState": "AgIAAFgAAAAAAAAAAAAjwFYAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T02:04:23.189Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T02:04:23.189Z"
             },
             {
               "$type": "Document",
@@ -104,8 +115,7 @@
               "RelativeToolTip": "scripts\\4_World\\UApi\\ItemBase.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T02:04:01.363Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T02:04:01.363Z"
             },
             {
               "$type": "Document",
@@ -117,12 +127,11 @@
               "RelativeToolTip": "scripts\\4_World\\UApi\\CarScript.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T02:03:50.862Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T02:03:50.862Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "SimpleStore.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\_UAPIBase\\scripts\\3_Game\\UApi\\SimpleStore.c",
               "RelativeDocumentMoniker": "scripts\\3_Game\\UApi\\SimpleStore.c",
@@ -130,12 +139,11 @@
               "RelativeToolTip": "scripts\\3_Game\\UApi\\SimpleStore.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T02:03:29.653Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T02:03:29.653Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ScriptExecutor.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\_UAPIBase\\scripts\\3_Game\\UApi\\ScriptExecutor.c",
               "RelativeDocumentMoniker": "scripts\\3_Game\\UApi\\ScriptExecutor.c",
@@ -143,8 +151,7 @@
               "RelativeToolTip": "scripts\\3_Game\\UApi\\ScriptExecutor.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T02:00:43.055Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T02:00:43.055Z"
             },
             {
               "$type": "Document",
@@ -156,8 +163,7 @@
               "RelativeToolTip": "scripts\\3_Game\\UApi\\ScriptBase.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T02:00:35.443Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T02:00:35.443Z"
             },
             {
               "$type": "Document",
@@ -169,8 +175,7 @@
               "RelativeToolTip": "scripts\\3_Game\\UApi\\SampleExec.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T02:00:33.551Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T02:00:33.551Z"
             },
             {
               "$type": "Document",
@@ -182,12 +187,11 @@
               "RelativeToolTip": "scripts\\3_Game\\UApi\\ObjectBase.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T02:00:27.874Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T02:00:27.874Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Logger.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\_UAPIBase\\scripts\\3_Game\\UApi\\Logger.c",
               "RelativeDocumentMoniker": "scripts\\3_Game\\UApi\\Logger.c",
@@ -195,12 +199,11 @@
               "RelativeToolTip": "scripts\\3_Game\\UApi\\Logger.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T01:57:23.623Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T01:57:23.623Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "JsonHandler.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\_UAPIBase\\scripts\\3_Game\\UApi\\JsonHandler.c",
               "RelativeDocumentMoniker": "scripts\\3_Game\\UApi\\JsonHandler.c",
@@ -208,8 +211,7 @@
               "RelativeToolTip": "scripts\\3_Game\\UApi\\JsonHandler.c",
               "ViewState": "AgIAAFcAAAAAAAAAAAAAAGwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T01:56:54.253Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T01:56:54.253Z"
             },
             {
               "$type": "Document",
@@ -221,12 +223,11 @@
               "RelativeToolTip": "scripts\\3_Game\\UApi\\ItemStoreMetaData.c",
               "ViewState": "AgIAADMAAAAAAAAAAAAqwFoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T01:56:01.926Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T01:56:01.926Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Currencys.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\_UAPIBase\\scripts\\3_Game\\UApi\\Currencys.c",
               "RelativeDocumentMoniker": "scripts\\3_Game\\UApi\\Currencys.c",
@@ -234,8 +235,7 @@
               "RelativeToolTip": "scripts\\3_Game\\UApi\\Currencys.c",
               "ViewState": "AgIAAKQAAAAAAAAAAAAjwMQAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T01:54:53.828Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T01:54:53.828Z"
             },
             {
               "$type": "Document",
@@ -247,8 +247,7 @@
               "RelativeToolTip": "scripts\\Common\\UApi\\Common.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T01:54:50.804Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T01:54:50.804Z"
             }
           ]
         }

@@ -10,7 +10,7 @@ modded class PlayerDataStore extends Managed
 		this.SavePlayer(player);
 	}	
 	
-	void SavePlayer(PlayerBase player)
+	override void SavePlayer(PlayerBase player)
 	{
 		if (!player)
 		{
@@ -110,7 +110,7 @@ modded class PlayerDataStore extends Managed
 		return player;
 	}
 	
-	void SetupPlayer(PlayerBase player, vector Pos = vector.Zero, vector Ori =  vector.Zero)
+	override void SetupPlayer(PlayerBase player, vector Pos = vector.Zero, vector Ori =  vector.Zero)
 	{
 		if (!player)
 		{ 

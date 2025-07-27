@@ -1,4 +1,4 @@
-static ref DeparturePointMenu m_DeparturePointMenu;
+ref DeparturePointMenu m_DeparturePointMenu;
 
 class DeparturePointMenu extends UIScriptedMenu
 {
