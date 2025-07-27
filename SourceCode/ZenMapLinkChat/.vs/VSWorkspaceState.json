@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\scripts",
+    "\\scripts\\3_Game",
+    "\\scripts\\4_World",
+    "\\scripts\\4_World\\entities",
+    "\\scripts\\4_World\\entities\\manbase",
+    "\\scripts\\4_World\\gui",
+    "\\scripts\\4_World\\plugins",
+    "\\scripts\\4_World\\plugins\\pluginbase",
+    "\\scripts\\5_Mission"
+  ],
+  "SelectedNode": "\\scripts\\4_World\\plugins\\pluginbase\\PluginZenMapLinkChatServer.c",
+  "PreviewInSolutionExplorer": false
+}
