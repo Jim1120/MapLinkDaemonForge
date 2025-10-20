@@ -4,7 +4,7 @@ This mod allows server admins to link multiple maps together in a "hive", where 
 
 The player is required to travel to a "transfer terminal" to initiate the map transfer (ie. a boat, helicopter, computer object etc placed with DayZ Editor).
 
-I did not create this mod: I've simply updated and repacked it for use with DayZ 1.28, fixed a bunch of error log messages and recorded a detailed video guide on how to set the whole thing up.
+I did not create this mod: I've simply updated and repacked it for use with DayZ 1.28, fixed a bunch of bugs and error log messages, added some extra features and recorded a detailed video guide on how to set the whole thing up.
 
 All credit goes to Daemonforge who is the original creator of this mod.
 
