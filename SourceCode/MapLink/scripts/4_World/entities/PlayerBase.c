@@ -194,6 +194,21 @@ modded class PlayerBase extends ManBase
 			this.SavePlayerToUApi();
 		}
     }
+
+	void SavePlayerToUApiForTransfer(string dstServer, string arrivalPoint)
+	{
+		if (!GetGame().IsDedicatedServer() || !m_MapLinkGUIDCache || !m_MapLinkNameCache)
+			return;
+
+		m_TransferPoint = arrivalPoint;
+		PlayerDataStore ds = new PlayerDataStore(this);
+		ds.ML_SetServerId(dstServer);
+		ds.m_TransferPoint = arrivalPoint;
+
+		UApi().db(PLAYER_DB).Save("MapLink", m_MapLinkGUIDCache, ds.ToJson());
+
+		UApi().db(PLAYER_DB).PublicSave("MapLink", m_MapLinkGUIDCache, SimpleValueStore.StoreValue(dstServer + "~" + arrivalPoint), NULL, "");
+	}
 	
 	void SavePlayerToUApi()
 	{
@@ -516,8 +531,9 @@ modded class PlayerBase extends ManBase
 		if (serverData && GetIdentity() && (cost <= 0 || UGetPlayerBalance(GetMapLinkConfig().GetCurrencyKey(id)) >= cost))
 		{
 			URemoveMoney(GetMapLinkConfig().GetCurrencyKey(id),cost);
-			this.UApiSaveTransferPoint(arrivalPoint);
-			this.SavePlayerToUApi();
+			//this.UApiSaveTransferPoint(arrivalPoint);
+			//this.SavePlayerToUApi();
+			SavePlayerToUApiForTransfer(serverData.Name, arrivalPoint);
 			MLLog.Info("Player: " + GetIdentity().GetName() + " (" + GetIdentity().GetId() +  ") Sending to Server: " + serverData.Name + "(" + serverData.IP  + ":" + serverData.Port.ToString() + ") at ArrivalPoint: " + arrivalPoint);
 			GetRPCManager().SendRPC("MapLink", "RPCRedirectedKicked", new Param1<UApiServerData>(serverData), true, GetIdentity());
 			SetAllowDamage(false);
@@ -544,8 +560,9 @@ modded class PlayerBase extends ManBase
 				m_LastMapTransferTimestamp = UUtil.GetUnixInt();
 				UApi().db(PLAYER_DB).PublicSave("MapLinkLastTransferTime", m_MapLinkGUIDCache, SimpleValueStore.StoreValue(m_LastMapTransferTimestamp.ToString()),NULL,"");
 				URemoveMoney(GetMapLinkConfig().GetCurrencyKey(id),cost);
-				this.UApiSaveTransferPoint(arrivalPoint);
-				this.SavePlayerToUApi();
+				//this.UApiSaveTransferPoint(arrivalPoint);
+				//this.SavePlayerToUApi();
+				SavePlayerToUApiForTransfer(serverName, arrivalPoint);
 				MLLog.Info("Player: " + GetIdentity().GetName() + " (" + GetIdentity().GetId() +  ") Sending to Server: " + serverName  + " at ArrivalPoint: " + arrivalPoint);
 				GetRPCManager().SendRPC("MapLink", "RPCRedirectedKicked", new Param1<UApiServerData>(serverData), true, GetIdentity());
 				SetAllowDamage(false);

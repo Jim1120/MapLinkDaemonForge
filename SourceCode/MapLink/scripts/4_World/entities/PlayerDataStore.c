@@ -180,4 +180,9 @@ modded class PlayerDataStore extends Managed
 		
 		player.GetStatBloodType().Set(m_BloodType);
 	}
+
+	void ML_SetServerId(string serverId)
+	{
+		m_Server = serverId;
+	}
 }

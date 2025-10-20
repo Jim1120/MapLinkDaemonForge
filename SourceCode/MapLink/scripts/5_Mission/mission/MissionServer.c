@@ -123,7 +123,7 @@ modded class MissionServer extends MissionBase
 
 		PlayerDataStore playerdata;	
 		
-		if (identity && m_PlayerDBQue.Contains(identity.GetId()) &&  m_PlayerDBQue.Find(identity.GetId(), playerdata) && playerdata.IsValid()) 
+		if (identity && m_PlayerDBQue.Contains(identity.GetId()) && m_PlayerDBQue.Find(identity.GetId(), playerdata) && playerdata.IsValid()) 
 		{
 			pos = "0 0 0";
 			vector ori = "0 0 0";
@@ -161,41 +161,57 @@ modded class MissionServer extends MissionBase
 			}
 
 			MLLog.Log("Spawning player " + identity.GetId() + " on: " + UApiConfig().ServerID + " World: " + m_worldname + " at " + transferPoint);
-			
-			if (fromServerName != UApiConfig().ServerID && transferPoint == "") 
-			{
-				serverData = UApiServerData.Cast(GetMapLinkConfig().GetServer(playerdata.m_Server));
-				NotificationSystem.Create(new StringLocaliser("Map Link"),new StringLocaliser("#STR_MapLink_Redirect - " + fromServerName), "set:maplink_icons image:redirect", -16843010, 16, identity);
-				
-				GetRPCManager().SendRPC("MapLink", "RPCRedirectedKicked", new Param1<UApiServerData>(serverData), true, identity);
-				
-				MLLog.Info("Player " + identity.GetId() + " Redirected to correct server " +  fromServerName);
-				MLLog.Debug("Removing Player from Queue " + identity.GetId());
-				
-				m_PlayerDBQue.Remove(identity.GetId());
-				
-				return false;
-			}
+			MapLinkSpawnPointPos pointPos;
 
-			if (fromServerName != UApiConfig().ServerID && transferPoint != "") 
+			// Treat any non-empty transferPoint as "arrival in progress"
+			if (transferPoint != "")
 			{
-				MapLinkSpawnPointPos pointPos;
-
-				if (!Class.CastTo(pointPos, GetMapLinkConfig().SpawnPointPos(transferPoint)))
+				if (Class.CastTo(pointPos, GetMapLinkConfig().SpawnPointPos(transferPoint)))
 				{
+					// This server is the intended receiver; spawn at arrival
+					pos = pointPos.Get();
+					ori = pointPos.GetOrientation();
+				}
+				else 
+				if (fromServerName != UApiConfig().ServerID)
+				{
+					// Not configured to receive here; send them to the saved destination
 					serverData = UApiServerData.Cast(GetMapLinkConfig().GetServer(fromServerName));
-					NotificationSystem.Create(new StringLocaliser("Map Link"),new StringLocaliser("#STR_MapLink_Error - " + playerdata.m_Server), "set:maplink_icons image:redirect", -16843010, 16, identity);
 					GetRPCManager().SendRPC("MapLink", "RPCRedirectedKicked", new Param1<UApiServerData>(serverData), true, identity);
-
-					MLLog.Err("Server isn't set up to receive this arrival point(" + transferPoint + ") Player " + identity.GetId() + " Redirected back to previous server " +  playerdata.m_Server);
-					MLLog.Debug("Removing Player from Queue " + identity.GetId());
-
+					MLLog.Info("MapLink: arrival point '" + transferPoint + "' not on this server; redirecting to " + fromServerName);
 					m_PlayerDBQue.Remove(identity.GetId());
 					return false;
 				}
+				// else: no spawn point and no different server—fall through to default spawn (should not happen if config is consistent)
+			}
 
-				pos = pointPos.Get();
-				ori = pointPos.GetOrientation();//not sexual
+			if (fromServerName != UApiConfig().ServerID)
+			{
+				serverData = UApiServerData.Cast(GetMapLinkConfig().GetServer(fromServerName));
+				if (serverData) 
+				{
+					NotificationSystem.Create(new StringLocaliser("Map Link"), new StringLocaliser("#STR_MapLink_Redirecting"), "set:maplink_icons image:redirect", -16843010, 16, identity);
+					GetRPCManager().SendRPC("MapLink", "RPCRedirectedKicked", new Param1<UApiServerData>(serverData), true, identity);
+				}
+
+				m_PlayerDBQue.Remove(identity.GetId());
+				return false;
+			}
+
+			// We are on the correct server: finish the arrival, if any
+			if (transferPoint != "")
+			{
+				pointPos;
+				if (Class.CastTo(pointPos, GetMapLinkConfig().SpawnPointPos(transferPoint))) 
+				{
+					pos = pointPos.Get();
+					ori = pointPos.GetOrientation();
+				} else 
+				{
+					MLLog.Err("Arrival point '" + transferPoint + "' not configured on " + UApiConfig().ServerID + "; using default spawn.");
+					pos = GetGame().ConfigGetVector(string.Format("CfgWorlds %1 centerPosition", GetGame().GetWorldName()));
+					pos[1] = GetGame().SurfaceY(pos[0], pos[2]) + 0.1;
+				}
 			}
 
 			PlayerBase player = PlayerBase.Cast(PlayerDataStore.Cast(playerdata).CreateWithIdentity(PlayerIdentity.Cast(identity), pos));
