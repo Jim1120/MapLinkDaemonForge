@@ -205,9 +205,7 @@ modded class PlayerBase extends ManBase
 		ds.ML_SetServerId(dstServer);
 		ds.m_TransferPoint = arrivalPoint;
 
-		string transferJson = ds.ToJson();
-		MLLog.LogTransferMongoPayload(m_MapLinkNameCache, m_MapLinkGUIDCache, dstServer, arrivalPoint, transferJson);
-		UApi().db(PLAYER_DB).Save("MapLink", m_MapLinkGUIDCache, transferJson);
+		UApi().db(PLAYER_DB).Save("MapLink", m_MapLinkGUIDCache, ds.ToJson());
 
 		UApi().db(PLAYER_DB).PublicSave("MapLink", m_MapLinkGUIDCache, SimpleValueStore.StoreValue(dstServer + "~" + arrivalPoint), NULL, "");
 	}

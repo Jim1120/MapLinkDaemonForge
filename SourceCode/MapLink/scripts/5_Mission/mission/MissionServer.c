@@ -39,8 +39,6 @@ modded class MissionServer extends MissionBase
       	if (status == UAPI_SUCCESS)
 		{  
 			//If its a success
-			MLLog.LogLoadMongoPayload(oid, data);
-
 			PlayerDataStore dataload;
 
 			if (UApiJSONHandler<PlayerDataStore>.FromString(data, dataload))
