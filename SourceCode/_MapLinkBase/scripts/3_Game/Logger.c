@@ -38,6 +38,60 @@ class MLLog extends Managed
 		Error2("[MapLink] Error", text);
 		GetInstance().DoLog(text, MLERROR);
 	}
+
+	/** Writes the exact JSON body sent to the Universal API / MongoDB on map transfer (Player /Save). */
+	static void LogTransferMongoPayload(string playerName, string guid, string dstServer, string arrivalPoint, string jsonPayload)
+	{
+		if (!GetGame().IsDedicatedServer() || GetGame().IsClient())
+			return;
+
+		if (jsonPayload == "")
+		{
+			GetInstance().DoLog("LogTransferMongoPayload: empty json payload", MLINFO);
+			return;
+		}
+
+		string fileName = "$profile:MapLink_TransferMongo_" + GetGame().GetTime().ToString() + "_" + Math.RandomInt(0, 2147483647).ToString() + ".json";
+		FileHandle fh = OpenFile(fileName, FileMode.WRITE);
+		if (fh == 0)
+		{
+			Err("LogTransferMongoPayload: could not open for write: " + fileName);
+			return;
+		}
+
+		FPrintln(fh, jsonPayload);
+		CloseFile(fh);
+
+		string meta = "Transfer Mongo payload | file=" + fileName + " | player=" + playerName + " | guid=" + guid + " | dstServer=" + dstServer + " | arrivalPoint=" + arrivalPoint + " | jsonChars=" + jsonPayload.Length().ToString();
+		GetInstance().DoLog(meta, MLINFO);
+	}
+
+	/** Writes the raw JSON returned from the Universal API / MongoDB before PlayerDataStore deserialization. Runs on this machine for every successful MapLink player /Load (including non-transfer logins). */
+	static void LogLoadMongoPayload(string guid, string jsonPayload)
+	{
+		if (!GetGame().IsDedicatedServer() || GetGame().IsClient())
+			return;
+
+		if (jsonPayload == "")
+		{
+			GetInstance().DoLog("LogLoadMongoPayload: empty json payload guid=" + guid, MLINFO);
+			return;
+		}
+
+		string fileName = "$profile:MapLink_LoadMongo_" + GetGame().GetTime().ToString() + "_" + Math.RandomInt(0, 2147483647).ToString() + ".json";
+		FileHandle fh = OpenFile(fileName, FileMode.WRITE);
+		if (fh == 0)
+		{
+			Err("LogLoadMongoPayload: could not open for write: " + fileName);
+			return;
+		}
+
+		FPrintln(fh, jsonPayload);
+		CloseFile(fh);
+
+		string meta = "Load Mongo payload (pre-FromString) | file=" + fileName + " | guid=" + guid + " | jsonChars=" + jsonPayload.Length().ToString();
+		GetInstance().DoLog(meta, MLINFO);
+	}
 	
 	static void SetLogLevels(int level, int apiLevel = -99)
 	{
